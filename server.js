@@ -6,7 +6,9 @@ const redis = require("redis");
 const app = express();
 
 // create and connect
-const client = redis.createClient(6379);
+const client = redis.createClient(process.env.REDISCLOUD_URL, {
+  no_ready_check: true
+});
 
 // echo redis errors to the console
 client.on("error", err => {
